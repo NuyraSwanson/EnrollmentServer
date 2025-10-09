@@ -44,6 +44,19 @@ public Course findCourse(String courseId) throws SQLException {
  return course;
 }
 
+public void addCourse(Course c) throws SQLException {
+    String sql = "INSERT INTO COURSE (courseId, courseName, credits, department, duration) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement ps = conn.prepareStatement(sql);
+    ps.setString(1, c.getCourseID());
+    ps.setString(2, c.getCourseName());
+    ps.setInt(3, c.getCredits());
+    ps.setString(4, c.getDepartment());
+    ps.setInt(5, c.getDuration());
+    
+    ps.executeUpdate();
+    ps.close();
+}
+
 //getting all courses
 public List<Course> getAllCourses() throws SQLException {
  List<Course> courses = new ArrayList<>();

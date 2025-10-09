@@ -10,10 +10,13 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import za.ac.cput.serversideproject.DAO.AdminDAO;
 import za.ac.cput.serversideproject.DAO.CourseDAO;
 import za.ac.cput.serversideproject.DAO.EnrollDAO;
 import za.ac.cput.serversideproject.DAO.StudentDAO;
+import za.ac.cput.serversideproject.WorkerClasses.Course;
+import za.ac.cput.serversideproject.WorkerClasses.Enroll;
 import za.ac.cput.serversideproject.WorkerClasses.Student;
 
 /**
@@ -99,10 +102,57 @@ public class ServerSideProject {
                       out.flush();
                       break;
                   }
+                  
+                  case "ADD_STUDENT" : {
+                      Student s = (Student) in.readObject();
+                      studentDAO.addStudent(s);
+                      out.writeObject("STUDENT_ADDED");
+                      System.out.println("New student added: " + s.getName());
+                      out.flush();
+                      break;
+                  }
+                  
+                  case "ADD_COURSE" : {
+                      Course c = (Course) in.readObject();
+                      courseDAO.addCourse(c);
+                      out.writeObject("COURSE_ADDED");
+                      System.out.println("New course added: " + c.getCourseName());
+                      out.flush();
+                      break;
+                      
+                  }
+                  
+                  case "VIEW_COURSES" : {
+                      List<Course> courses = courseDAO.getAllCourses();
+                      out.writeObject(courses);
+                      System.out.println("Sent course list to client (" + courses.size() + " courses)");
+                      out.flush();
+                      break;
+                      
+                  }
+                  
+                  case "VIEW_STUDENTS" : {
+                      List<Student> students = studentDAO.getAllStudents();
+                      out.writeObject(students);
+                      System.out.println("Sent student list to client (" + students.size() + " students)");
+                      out.flush();
+                      break;
+                  }
+                  
+                  case "ENROLL" : {
+                      Enroll e = (Enroll) in.readObject();
+                      enrollDAO.enrollStudent(e);
+                      out.writeObject("ENROLL_SUCCESS");
+                      System.out.println("Student enrolled: " + e.getStudentId() + " in course " + e.getCourseId());
+                      out.flush();
+                      break;
+                      
+                  }
 
                default:
                  out.writeObject("UNKNOWN COMMAND");
                  out.flush();
+                 System.out.println("Unknown command");
                  break;
 
               }
