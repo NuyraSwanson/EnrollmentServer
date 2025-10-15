@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 
 public class DBConnection {
-   public static Connection DBConnection() throws SQLException {
+   public static Connection getConnection() throws SQLException {
    String DATABASE_URL = "jdbc:derby://localhost:1527/StudentEnrollmentDB";
    String username = "administrator";
    String password = "admin";

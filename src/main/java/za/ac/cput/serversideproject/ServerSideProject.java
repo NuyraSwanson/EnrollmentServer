@@ -15,6 +15,7 @@ import za.ac.cput.serversideproject.DAO.AdminDAO;
 import za.ac.cput.serversideproject.DAO.CourseDAO;
 import za.ac.cput.serversideproject.DAO.EnrollDAO;
 import za.ac.cput.serversideproject.DAO.StudentDAO;
+import za.ac.cput.serversideproject.DBConnection.DBConnection;
 import za.ac.cput.serversideproject.WorkerClasses.Course;
 import za.ac.cput.serversideproject.WorkerClasses.Enroll;
 import za.ac.cput.serversideproject.WorkerClasses.Student;
@@ -35,23 +36,26 @@ public class ServerSideProject {
   
   public ServerSideProject(){
       try {
-          serverSocket = new ServerSocket(5678);
-          System.out.println("Server started. Waiting for connection...");
-          
-          conn = DriverManager.getConnection(
-                  "jdbc:derby://localhost:1527/StudentEnrollmentDB", "administrator", "admin"
-          );
-          System.out.println("Database connection established!");
-          
-          studentDAO = new StudentDAO(conn);
-          adminDAO = new AdminDAO(conn);
-          enrollDAO = new EnrollDAO(conn);
-          courseDAO = new CourseDAO(conn);
-          
-} catch (IOException | SQLException e) {
-    System.out.println("Error: " + e.getMessage());
-      }
-  }
+          // Start server
+            serverSocket = new ServerSocket(5678);
+            System.out.println("Server started. Waiting for connection...");
+
+            conn = DBConnection.getConnection();
+            System.out.println("Database connection established!");
+
+            studentDAO = new StudentDAO(conn);
+            adminDAO = new AdminDAO(conn);
+            enrollDAO = new EnrollDAO(conn);
+            courseDAO = new CourseDAO(conn);
+
+        } catch (SQLException e) {
+            System.out.println("Database connection error: " + e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Server socket error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
   
   public void start() {
       while (true) {
@@ -157,7 +161,7 @@ public class ServerSideProject {
 
               }
               }
-}catch (IOException | ClassNotFoundException | SQLException e) {
+         }catch (IOException | ClassNotFoundException | SQLException e) {
 
           }
       }
