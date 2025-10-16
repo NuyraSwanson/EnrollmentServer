@@ -7,6 +7,7 @@ import java.io.Serializable;
  * ADP Final assignment
  */
 public class Enroll implements Serializable {
+ private static final long serialVersionUID = 1L;
  private String studentId;
  private String courseId;
  private String enrollDate;

@@ -33,9 +33,7 @@ public Course findCourse(String courseId) throws SQLException {
      course = new Course (
              rs.getString("courseId"),
              rs.getString("courseName"),
-             rs.getInt("credits"),
-             rs.getString("department"),
-             rs.getInt("duration")
+             rs.getInt("credits")
      );
  }
  
@@ -50,8 +48,6 @@ public void addCourse(Course c) throws SQLException {
     ps.setString(1, c.getCourseID());
     ps.setString(2, c.getCourseName());
     ps.setInt(3, c.getCredits());
-    ps.setString(4, c.getDepartment());
-    ps.setInt(5, c.getDuration());
     
     ps.executeUpdate();
     ps.close();
@@ -68,9 +64,7 @@ public List<Course> getAllCourses() throws SQLException {
      courses.add(new Course(
              rs.getString("courseId"),
              rs.getString("courseName"),
-             rs.getInt("credits"),
-             rs.getString("department"),
-             rs.getInt("duration")
+             rs.getInt("credits")
      ));
  }
  

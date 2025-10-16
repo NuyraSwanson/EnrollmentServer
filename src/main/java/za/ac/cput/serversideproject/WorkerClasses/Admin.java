@@ -11,18 +11,23 @@ import java.io.Serializable;
  */
 
 public class Admin implements Serializable {
+   private static final long serialVersionUID = 1L;
    private String adminId;
     private String name;
     private String surname;
     private String password;
     private String email;
+    private String contactNo;
+    private String role;
 
-    public Admin(String adminId, String name, String surname, String password, String email) {
+    public Admin(String adminId, String password, String name, String surname, String email, String contactNo, String role) {
         this.adminId = adminId;
+        this.password = password;
         this.name = name;
         this.surname = surname;
-        this.password = password;
         this.email = email;
+        this.contactNo = contactNo;
+        this.role = role;
     }
     
     //getters
@@ -42,6 +47,14 @@ public class Admin implements Serializable {
         return email; 
     }
     
+    public String getRole() {
+        return role;
+    }
+    
+    public String getContactNo() {
+        return contactNo;
+    }
+    
     //setters
     public void setAdminId(String adminId) { 
         this.adminId = adminId; 
@@ -57,6 +70,14 @@ public class Admin implements Serializable {
     }
     public void setEmail(String email) { 
         this.email = email; 
+    }
+    
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
     //custom serialization

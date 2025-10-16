@@ -16,9 +16,11 @@ import za.ac.cput.serversideproject.DAO.CourseDAO;
 import za.ac.cput.serversideproject.DAO.EnrollDAO;
 import za.ac.cput.serversideproject.DAO.StudentDAO;
 import za.ac.cput.serversideproject.DBConnection.DBConnection;
+import za.ac.cput.serversideproject.WorkerClasses.Admin;
 import za.ac.cput.serversideproject.WorkerClasses.Course;
 import za.ac.cput.serversideproject.WorkerClasses.Enroll;
 import za.ac.cput.serversideproject.WorkerClasses.Student;
+
 
 /**
  * ADP Final assignment
@@ -152,6 +154,24 @@ public class ServerSideProject {
                       break;
                       
                   }
+                  
+                  case "GET_ADMIN" : {
+                      String username = (String) in.readObject();
+                      Admin admin = adminDAO.findAdmin(username);
+                      out.writeObject(admin);
+                      out.flush();
+                      System.out.println("Send admin details for: " + username);
+                      break;
+                  }
+                  
+                  case "VIEW_ADMINS": {
+                     List<Admin> admins = adminDAO.getAllAdmins();
+                     out.writeObject(admins);
+                     out.flush();
+                     System.out.println("Sent admin list to client (" + admins.size() + " admins)");
+                     
+                     break;
+                  } 
 
                default:
                  out.writeObject("UNKNOWN COMMAND");

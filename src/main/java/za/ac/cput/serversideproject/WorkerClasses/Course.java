@@ -14,16 +14,16 @@ public class Course implements Serializable {
     private String courseID;
     private String courseName;
     private int credits;
-    private String department;
-    private int duration;
+    //private String department;
+    //private int duration;
     
     //constructor
-    public Course(String courseID, String courseName, int credits, String department, int duration){
+    public Course(String courseID, String courseName, int credits){
     this.courseID = courseID;
     this.courseName = courseName;
     this.credits = credits;
-    this.department = department;
-    this.duration = duration;
+    //this.department = department;
+    //this.duration = duration;
 
     }
     
@@ -40,13 +40,7 @@ public class Course implements Serializable {
         return credits;
     }
     
-    public String getDepartment() {
-        return department;
-    }
-    
-    public int getDuration() {
-        return duration;
-    }
+   
     
     //Setters
     public void setCourseID(String courseID){
@@ -61,21 +55,13 @@ public class Course implements Serializable {
         this.credits = credits;
     }
     
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-    
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+   
     
     @Override
     public String toString(){
         return "Course{" +
                 "courseID='" + courseID + '\'' +
                 ", courseName='" + courseName + '\'' +
-                ", department='" + department + '\'' +
-                ", duration='" + duration + '\'' +
                 ", credits='" + credits + 
                 '}';
     }  
