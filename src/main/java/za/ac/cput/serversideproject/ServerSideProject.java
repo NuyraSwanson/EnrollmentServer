@@ -16,10 +16,10 @@ import za.ac.cput.serversideproject.DAO.CourseDAO;
 import za.ac.cput.serversideproject.DAO.EnrollDAO;
 import za.ac.cput.serversideproject.DAO.StudentDAO;
 import za.ac.cput.serversideproject.DBConnection.DBConnection;
-import za.ac.cput.serversideproject.WorkerClasses.Admin;
-import za.ac.cput.serversideproject.WorkerClasses.Course;
-import za.ac.cput.serversideproject.WorkerClasses.Enroll;
-import za.ac.cput.serversideproject.WorkerClasses.Student;
+import za.ac.cput.shared.WorkerClasses.Admin;
+import za.ac.cput.shared.WorkerClasses.Course;
+import za.ac.cput.shared.WorkerClasses.Enroll;
+import za.ac.cput.shared.WorkerClasses.Student;
 
 
 /**
@@ -75,8 +75,9 @@ public class ServerSideProject {
   
   private void handleClient(Socket clientSocket) {
       try {
-          ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
           ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+          ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+          out.flush();
           
           while (true) {
               String command = (String) in.readObject();

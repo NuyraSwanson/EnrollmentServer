@@ -1,5 +1,5 @@
 
-package za.ac.cput.serversideproject.WorkerClasses;
+package za.ac.cput.shared.WorkerClasses;
 
 import java.io.Serializable;
 
@@ -10,12 +10,11 @@ public class Enroll implements Serializable {
  private static final long serialVersionUID = 1L;
  private String studentId;
  private String courseId;
- private String enrollDate;
  
- public Enroll(String studentId, String courseId, String enrollDate) {
+ 
+ public Enroll(String studentId, String courseId) {
      this.studentId = studentId;
      this.courseId = courseId;
-     this.enrollDate = enrollDate;
  }
  
  public Enroll() {
@@ -31,9 +30,6 @@ public class Enroll implements Serializable {
      return courseId;
  }
  
- public String getEnrollDate() {
-     return enrollDate;
- }
  
  //Setters
  public void setStudentId(String studentid) {
@@ -44,16 +40,12 @@ public class Enroll implements Serializable {
      this.courseId = courseId;
  }
  
- public void setEnrollDate(String enrollDate) {
-     this.enrollDate = enrollDate;
- }
  
  @Override
  public String toString() {
      return "Enroll{" +
              "studentId='" + studentId + '\'' +
              ", courseId='" + courseId + '\'' + 
-             ", enrollDate='" + enrollDate + 
              '}';
  }
     

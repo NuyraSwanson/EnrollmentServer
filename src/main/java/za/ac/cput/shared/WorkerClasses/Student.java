@@ -1,5 +1,5 @@
 
-package za.ac.cput.serversideproject.WorkerClasses;
+package za.ac.cput.shared.WorkerClasses;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,22 +17,18 @@ public class Student implements Serializable {
    private String studentNo;
    private String name;
    private String surname;
-   private char gender;
    private String phoneNo;
    private String emailAdd;
-   private String dob;
    private transient String password;
    
    //constructor
-   public Student(String studentNo, String name, String surname, String password, char gender, String dob, String phoneNo, String emailAdd){
+   public Student(String studentNo, String name, String surname,String password, String phoneNo, String emailAdd){
        this.studentNo = studentNo;
        this.name = name;
        this.password = password;
        this.surname = surname;
-       this.dob = dob;
        this.emailAdd = emailAdd;
        this.phoneNo = phoneNo;
-       this.gender = gender;
        
    }
    
@@ -53,9 +49,6 @@ public class Student implements Serializable {
        return surname;
    }
    
-   public String getDOB() {
-       return dob;
-   }
    
    public String getPhoneNo() {
        return phoneNo;
@@ -65,9 +58,6 @@ public class Student implements Serializable {
        return emailAdd;
    }
    
-   public char getGender() {
-     return gender;  
-   }
    
    //Setters
    public void setStudentNo(String studentNo){
@@ -86,9 +76,6 @@ public class Student implements Serializable {
        this.surname = surname;
    }
    
-   public void setGender(char gender) {
-       this.gender = gender;
-   }
    
    public void setPhoneNo(String phoneNo) {
        this.phoneNo = phoneNo;
@@ -98,9 +85,6 @@ public class Student implements Serializable {
        this.emailAdd = emailAdd;
    }
    
-   public void setDob(String dob) {
-       this.dob = dob;
-   }
    
    //custom serialization
    private void writeObject(ObjectOutputStream out) throws IOException {
@@ -119,10 +103,8 @@ public String toString() {
             "studentNo='" + studentNo + '\'' +
             "name='" + name + '\'' +
             "surname='" + surname + '\'' +
-            "gender='" + gender + '\'' +
             "emailAdd='" + emailAdd + '\'' +
             "phoneNo='" + phoneNo + '\'' + 
-            ", dob='" + dob + '\'' +
             '}';
 }
 }

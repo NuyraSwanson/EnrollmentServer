@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import za.ac.cput.serversideproject.WorkerClasses.Student;
+import za.ac.cput.shared.WorkerClasses.Student;
 
 /**
  * ADP Final assignment
@@ -23,16 +23,14 @@ public class StudentDAO {
     
     //adding a new student
     public void addStudent(Student s) throws SQLException {
-      String sql = "INSERT INTO STUDENT (studentNo, name, surname, password, gender, DOB, phoneNo, emailAdd) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      String sql = "INSERT INTO STUDENT (studentNo, name, surname, phoneNo, emailAdd) VALUES (?, ?, ?, ?, ?)";
       PreparedStatement ps = conn.prepareStatement(sql);
       ps.setString(1, s.getStudentNo());
       ps.setString(2, s.getName());
       ps.setString(3, s.getSurname());
-      ps.setString(4, s.getPassword());
-      ps.setString(5, String.valueOf(s.getGender()));
-      ps.setString(6, s.getDOB());
-      ps.setString(7, s.getPhoneNo());
-      ps.setString(8, s.getEmailAdd());
+      //ps.setString(6, s.getPassword());
+      ps.setString(4, s.getPhoneNo());
+      ps.setString(5, s.getEmailAdd());
       ps.executeUpdate();
       ps.close();
     }
@@ -51,8 +49,6 @@ public class StudentDAO {
                     rs.getString("name"),
                     rs.getString("surname"),
                     rs.getString("password"),
-                    rs.getString("gender").charAt(0),
-                    rs.getString("dob"),
                     rs.getString("phoneNo"),
                     rs.getString("emailAdd")
             );
@@ -76,8 +72,6 @@ public class StudentDAO {
                     rs.getString("name"),
                     rs.getString("surname"),
                     rs.getString("password"),
-                    rs.getString("gender").charAt(0),
-                    rs.getString("dob"),
                     rs.getString("phoneNo"),
                     rs.getString("emailAdd")
           ));

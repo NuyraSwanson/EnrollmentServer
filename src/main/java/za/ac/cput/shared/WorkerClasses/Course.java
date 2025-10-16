@@ -1,5 +1,5 @@
 
-package za.ac.cput.serversideproject.WorkerClasses;
+package za.ac.cput.shared.WorkerClasses;
 
 import java.io.Serializable;
 

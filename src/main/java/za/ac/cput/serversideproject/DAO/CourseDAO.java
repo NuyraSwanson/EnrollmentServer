@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import za.ac.cput.serversideproject.WorkerClasses.Course;
+import za.ac.cput.shared.WorkerClasses.Course;
 
 /**
  * ADP Final assignment
@@ -43,7 +43,7 @@ public Course findCourse(String courseId) throws SQLException {
 }
 
 public void addCourse(Course c) throws SQLException {
-    String sql = "INSERT INTO COURSE (courseId, courseName, credits, department, duration) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO COURSE (courseId, courseName, credits) VALUES (?, ?, ?)";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, c.getCourseID());
     ps.setString(2, c.getCourseName());
