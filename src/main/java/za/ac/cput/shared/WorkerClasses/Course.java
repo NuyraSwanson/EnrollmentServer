@@ -14,16 +14,12 @@ public class Course implements Serializable {
     private String courseID;
     private String courseName;
     private int credits;
-    //private String department;
-    //private int duration;
     
     //constructor
     public Course(String courseID, String courseName, int credits){
     this.courseID = courseID;
     this.courseName = courseName;
     this.credits = credits;
-    //this.department = department;
-    //this.duration = duration;
 
     }
     
